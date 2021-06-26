@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -38,14 +39,11 @@ public class FrmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtInput = new javax.swing.JTextField();
         btnAnalyze = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtInput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         btnAnalyze.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnalyze.setText("Analyze");
@@ -66,20 +64,15 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAnalyze, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(btnAnalyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAnalyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtInput))
+                .addComponent(btnAnalyze)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addContainerGap())
@@ -90,19 +83,11 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void btnAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyzeActionPerformed
         // TODO add your handling code here:
-        File file = new File("file.txt");
-        PrintWriter write;
-        try {
-            write = new PrintWriter(file);
-            write.print(txtInput.getText());
-            write.close();
-                    
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
         
         try {
-            Reader reader = new BufferedReader(new FileReader("file.txt"));
+            Reader reader = new BufferedReader(new FileReader(chooser.getSelectedFile()));
             Lexer lexer = new Lexer(reader);
             String result = "";
             while (true){
@@ -170,7 +155,6 @@ public class FrmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalyze;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtInput;
     private javax.swing.JTextArea txtResult;
     // End of variables declaration//GEN-END:variables
 }
