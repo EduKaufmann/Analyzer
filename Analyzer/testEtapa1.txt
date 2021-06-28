@@ -1,0 +1,33 @@
+char _asdf1;
+char test;
+float test1[];
+lol adsad;
+char test[];
+char testing[1];
+char zaaaz[0];
+char lllll[a];
+int l;
+float asdf;
+char t, abc12, l2;
+char abc1;
+int _;
+int _0;
+float _;
+float 0;
+float 1a;
+float abc, 2f;
+int ,lll;
+float asdf,alalala;
+char _aaaa;
+int _v;
+float __l__;
+ab
+a
+asdsakdjal
+123123
+"abc"
+"a
+bc"
+12312"
+"aasd2
+"23131"

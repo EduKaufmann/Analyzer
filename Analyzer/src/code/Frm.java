@@ -57,19 +57,19 @@ public class Frm extends javax.swing.JFrame {
                     result += "  <Reservada while>\t" + lexer.lexeme + "\n";
                     break;
                 case For:
-                    result += "  <Reservada For>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada for>\t" + lexer.lexeme + "\n";
                     break;
                 case Switch:
-                    result += "  <Reservada Switch>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada switch>\t" + lexer.lexeme + "\n";
                     break;
                 case Case:
-                    result += "  <Reservada Case>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada case>\t" + lexer.lexeme + "\n";
                     break;
                 case Default:
-                    result += "  <Reservada Default>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada default>\t" + lexer.lexeme + "\n";
                     break;
                 case Break:
-                    result += "  <Reservada Break>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada break>\t" + lexer.lexeme + "\n";
                     break;
                 case Equal:
                     result += "  <Operador igual>\t" + lexer.lexeme + "\n";
@@ -78,7 +78,7 @@ public class Frm extends javax.swing.JFrame {
                     result += "  <Operador matemático>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_logical:
-                    result += "  <Operador logico>\t" + lexer.lexeme + "\n";
+                    result += "  <Operador lógico>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_increase:
                     result += "  <Operador incremento>\t" + lexer.lexeme + "\n";
@@ -114,7 +114,7 @@ public class Frm extends javax.swing.JFrame {
                     result += "  <Dois Pontos>\t" + lexer.lexeme + "\n";
                     break;
                 case Identifier:
-                    result += "  <Identifier>\t\t" + lexer.lexeme + "\n";
+                    result += "  <Identificador>\t\t" + lexer.lexeme + "\n";
                     break;
                 case Number:
                     result += "  <Número>\t\t" + lexer.lexeme + "\n";
