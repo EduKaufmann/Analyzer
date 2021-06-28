@@ -24,8 +24,6 @@ space=[ ,\t,\r,\n]+
 
 ( "//"(.)* ) {/*Ignore*/}
 
-( "\"" ) {return new Symbol(sym.Quotes, yychar, yyline, yytext());}
-
 ( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
 
 ( "float" ) {return new Symbol(sym.Float, yychar, yyline, yytext());}
@@ -36,21 +34,21 @@ space=[ ,\t,\r,\n]+
 
 ( else ) {return new Symbol(sym.Else, yychar, yyline, yytext());}
 
-( do ) {return new Symbol(sym.Do, yychar, yyline, yytext());}
-
 ( while ) {return new Symbol(sym.While, yychar, yyline, yytext());}
 
 ( for ) {return new Symbol(sym.For, yychar, yyline, yytext());}
 
+( switch ) {return new Symbol(sym.Switch, yychar, yyline, yytext());}
+
+( case ) {return new Symbol(sym.Case, yychar, yyline, yytext());}
+
+( default ) {return new Symbol(sym.Default, yychar, yyline, yytext());}
+
+( break ) {return new Symbol(sym.Break, yychar, yyline, yytext());}
+
 ( "=" ) {return new Symbol(sym.Equal, yychar, yyline, yytext());}
 
-( "+" ) {return new Symbol(sym.Sum, yychar, yyline, yytext());}
-
-( "-" ) {return new Symbol(sym.Subtraction, yychar, yyline, yytext());}
-
-( "*" ) {return new Symbol(sym.Multiplication, yychar, yyline, yytext());}
-
-( "/" ) {return new Symbol(sym.Division, yychar, yyline, yytext());}
+( "+" | "-" | "*" | "/" ) {return new Symbol(sym.Op_mathematic, yychar, yyline, yytext());}
 
 ( "&&" | "||" | "!" | "&" | "|" ) {return new Symbol(sym.Op_logical, yychar, yyline, yytext());}
 
@@ -58,11 +56,9 @@ space=[ ,\t,\r,\n]+
 
 ( "++" | "--" ) {return new Symbol(sym.Op_increase, yychar, yyline, yytext());}
 
-( true | false ) {return new Symbol(sym.Op_boolean, yychar, yyline, yytext());}
+( "(" ) {return new Symbol(sym.Parentheses_o, yychar, yyline, yytext());}
 
-( "(" ) {return new Symbol(sym.Parenthesis_o, yychar, yyline, yytext());}
-
-( ")" ) {return new Symbol(sym.Parenthesis_c, yychar, yyline, yytext());}
+( ")" ) {return new Symbol(sym.Parentheses_c, yychar, yyline, yytext());}
 
 ( "{" ) {return new Symbol(sym.Braces_o, yychar, yyline, yytext());}
 
@@ -73,6 +69,8 @@ space=[ ,\t,\r,\n]+
 ( "]" ) {return new Symbol(sym.Brackets_c, yychar, yyline, yytext());}
 
 ( ";" ) {return new Symbol(sym.Semicolon, yychar, yyline, yytext());}
+
+( ":" ) {return new Symbol(sym.Colon, yychar, yyline, yytext());}
 
 ( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {return new Symbol(sym.Identifier, yychar, yyline, yytext());}
 

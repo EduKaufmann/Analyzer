@@ -47,38 +47,35 @@ public class Frm extends javax.swing.JFrame {
                     cont++;
                     result += "LINHA " + cont + "\n";
                     break;
-                case Quotes:
-                    result += "  <Aspas>\t\t" + lexer.lexeme + "\n";
-                    break;
                 case If:
                     result += "  <Reservada if>\t" + lexer.lexeme + "\n";
                     break;
                 case Else:
                     result += "  <Reservada else>\t" + lexer.lexeme + "\n";
                     break;
-                case Do:
-                    result += "  <Reservada do>\t" + lexer.lexeme + "\n";
-                    break;
                 case While:
                     result += "  <Reservada while>\t" + lexer.lexeme + "\n";
                     break;
                 case For:
-                    result += "  <Reservada while>\t" + lexer.lexeme + "\n";
+                    result += "  <Reservada For>\t" + lexer.lexeme + "\n";
+                    break;
+                case Switch:
+                    result += "  <Reservada Switch>\t" + lexer.lexeme + "\n";
+                    break;
+                case Case:
+                    result += "  <Reservada Case>\t" + lexer.lexeme + "\n";
+                    break;
+                case Default:
+                    result += "  <Reservada Default>\t" + lexer.lexeme + "\n";
+                    break;
+                case Break:
+                    result += "  <Reservada Break>\t" + lexer.lexeme + "\n";
                     break;
                 case Equal:
                     result += "  <Operador igual>\t" + lexer.lexeme + "\n";
                     break;
-                case Sum:
-                    result += "  <Operador soma>\t" + lexer.lexeme + "\n";
-                    break;
-                case Subtraction:
-                    result += "  <Operador menos>\t" + lexer.lexeme + "\n";
-                    break;
-                case Multiplication:
-                    result += "  <Operador multiplicação>\t" + lexer.lexeme + "\n";
-                    break;
-                case Division:
-                    result += "  <Operador divisão>\t" + lexer.lexeme + "\n";
+                case Op_mathematic:
+                    result += "  <Operador matemático>\t" + lexer.lexeme + "\n";
                     break;
                 case Op_logical:
                     result += "  <Operador logico>\t" + lexer.lexeme + "\n";
@@ -89,13 +86,10 @@ public class Frm extends javax.swing.JFrame {
                 case Op_relational:
                     result += "  <Operador relacional>\t" + lexer.lexeme + "\n";
                     break;
-                case Op_boolean:
-                    result += "  <Operador booleano>\t" + lexer.lexeme + "\n";
-                    break;
-                case Parenthesis_o:
+                case Parentheses_o:
                     result += "  <Parentêses de abertura>\t" + lexer.lexeme + "\n";
                     break;
-                case Parenthesis_c:
+                case Parentheses_c:
                     result += "  <Parentêses de fechamento>\t" + lexer.lexeme + "\n";
                     break;
                 case Braces_o:
@@ -113,6 +107,9 @@ public class Frm extends javax.swing.JFrame {
                 case Semicolon:
                     result += "  <Ponto e vírgula>\t" + lexer.lexeme + "\n";
                     break;
+                case Colon:
+                    result += "  <Dois Pontos>\t" + lexer.lexeme + "\n";
+                    break;
                 case Identifier:
                     result += "  <Identifier>\t\t" + lexer.lexeme + "\n";
                     break;
@@ -123,7 +120,7 @@ public class Frm extends javax.swing.JFrame {
                     result += "  <Simbolo não definido>\n";
                     break;
                 default:
-                    result += "  < " + lexer.lexeme + " >\n";
+                    result += "  <" + lexer.lexeme + ">\n";
                     break;
             }
         }

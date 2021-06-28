@@ -15,18 +15,21 @@ parser code
 }
 :};
 
-terminal Line, Quotes, Int, Float, Char, If, Else,
-    Equal, Sum, Subtraction, Multiplication, Division, Op_logical, Op_relational,
-    Op_increase, Op_boolean, Parenthesis_o, Parenthesis_c,
-    Braces_o, Braces_c, Brackets_o, Brackets_c, Semicolon, Identifier,
-    Number, ERROR;
-non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION, 
-    RECURSIVE_ARRAY_DECLARATION, ARRAY_DECLARATION;
+terminal Line, Int, Float, Char, If, Else, Equal, Op_mathematic, While, Case,
+    Op_logical, Op_relational, Op_increase, Parentheses_o, Parentheses_c, Colon,
+    Braces_o, Braces_c, Brackets_o, Brackets_c, Semicolon, Identifier, Default,
+    Number, Switch, Break, ERROR;
+non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION, CONDITION, COMMANDS,
+    RECURSIVE_ARRAY_DECLARATION, ARRAY_DECLARATION, IF, COMMANDS2, WHILE,
+    SWITCH, CASE, CASE2, DEFAULT;
 
 start with BEGIN;
 
 BEGIN ::= 
-    DECLARATION
+    DECLARATION |
+    IF |
+    SWITCH |
+    WHILE
 ;
 DECLARATION ::= 
     Int Identifier RECURSIVE_DECLARATION | 
@@ -45,4 +48,46 @@ RECURSIVE_ARRAY_DECLARATION ::=
     Identifier ARRAY_DECLARATION RECURSIVE_ARRAY_DECLARATION |
     Identifier RECURSIVE_ARRAY_DECLARATION |
     Semicolon	
+;
+IF ::=
+    If Parentheses_o CONDITION Parentheses_c Braces_o COMMANDS Braces_c |
+    If Parentheses_o CONDITION Parentheses_c Braces_o COMMANDS Braces_c Else Braces_o COMMANDS Braces_c
+;
+CONDITION ::=
+    Identifier Op_relational Number |
+    Identifier Op_relational Identifier |
+    Number Op_relational Number |
+    Number Op_relational Identifier
+;
+COMMANDS ::=
+    Identifier Equal Identifier Op_mathematic Identifier COMMANDS2 |
+    Identifier Equal Identifier Op_mathematic Number COMMANDS2 |
+    Identifier Equal Number Op_mathematic Number COMMANDS2 |
+    Identifier Equal Number Op_mathematic Identifier COMMANDS2 |
+    Identifier Op_increase COMMANDS2
+;
+COMMANDS2 ::=
+    Semicolon Identifier Equal Identifier Op_mathematic Identifier COMMANDS2 |
+    Semicolon Identifier Equal Identifier Op_mathematic Number COMMANDS2 |
+    Semicolon Identifier Equal Number Op_mathematic Number COMMANDS2 |
+    Semicolon Identifier Equal Number Op_mathematic Identifier COMMANDS2 |
+    Semicolon Identifier Op_increase COMMANDS2 |
+    Semicolon
+;
+WHILE ::= 
+    While Parentheses_o CONDITION Parentheses_c Braces_o COMMANDS Braces_c
+;
+SWITCH ::= 
+    Switch Parentheses_o Identifier Parentheses_c Braces_o CASE Braces_c |
+    Switch Parentheses_o Identifier Parentheses_c Braces_o CASE DEFAULT Braces_c
+;
+CASE ::=
+    Case Number Colon CASE2 COMMANDS Break Semicolon Braces_c
+;
+CASE2 ::=
+    Case Number Colon CASE2 |
+    Braces_o
+;
+DEFAULT ::=
+    Default Colon Braces_o COMMANDS Braces_c
 ;
