@@ -76,4 +76,6 @@ space=[ ,\t,\r,\n]+
 
 ("(-"{Digits}+")")|{Digits}+ {return new Symbol(sym.Number, yychar, yyline, yytext());}
 
+( "'"[a-zA-Z_]"'" ) {return new Symbol(sym.Literal, yychar, yyline, yytext());}
+
  . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
