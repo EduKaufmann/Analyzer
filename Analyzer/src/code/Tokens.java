@@ -35,6 +35,7 @@ public enum Tokens {
     Brackets_c,
     Semicolon,
     Colon,
+    Literal,
     Identifier,
     Number,
     ERROR

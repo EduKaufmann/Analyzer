@@ -18,10 +18,10 @@ parser code
 terminal Line, Int, Float, Char, If, Else, Equal, Op_mathematic, While, Case,
     Op_logical, Op_relational, Op_increase, Parentheses_o, Parentheses_c, Colon,
     Braces_o, Braces_c, Brackets_o, Brackets_c, Semicolon, Identifier, Default,
-    Number, Switch, Break, Literal, ERROR;
+    Number, Switch, Break, CharName, For, ERROR;
 non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION, CONDITION, COMMANDS,
     RECURSIVE_ARRAY_DECLARATION, ARRAY_DECLARATION, IF, COMMANDS2, WHILE,
-    SWITCH, CASE, CASE_TYPE, DEFAULT;
+    SWITCH, CASE, CASE_TYPE, DEFAULT, COMMANDS_TYPE, FOR;
 
 start with BEGIN;
 
@@ -29,7 +29,8 @@ BEGIN ::=
     DECLARATION |
     IF |
     SWITCH |
-    WHILE
+    WHILE |
+    FOR
 ;
 DECLARATION ::= 
     Int Identifier RECURSIVE_DECLARATION | 
@@ -54,10 +55,7 @@ IF ::=
     If Parentheses_o CONDITION Parentheses_c Braces_o COMMANDS Braces_c Else Braces_o COMMANDS Braces_c
 ;
 CONDITION ::=
-    Identifier Op_relational Number |
-    Identifier Op_relational Identifier |
-    Number Op_relational Number |
-    Number Op_relational Identifier
+    COMMANDS_TYPE Op_relational COMMANDS_TYPE 
 ;
 COMMANDS ::=
     Identifier Equal Identifier Op_mathematic Identifier COMMANDS2 |
@@ -83,7 +81,7 @@ SWITCH ::=
 ;
 CASE_TYPE ::=
     Number |
-    Literal
+    CharName
 ;
 CASE ::=
     Case CASE_TYPE Colon Braces_o COMMANDS Break Semicolon Braces_c CASE|
@@ -95,4 +93,12 @@ CASE ::=
 ;
 DEFAULT ::=
     Default Colon Braces_o COMMANDS Braces_c
+;
+FOR ::=
+    For Parentheses_o Int Identifier Equal COMMANDS_TYPE Semicolon CONDITION Semicolon Identifier Op_increase Parentheses_c Braces_o COMMANDS Braces_c |
+    For Parentheses_o Float Identifier Equal COMMANDS_TYPE Semicolon CONDITION Semicolon Identifier Op_increase Parentheses_c Braces_o COMMANDS Braces_c
+;
+COMMANDS_TYPE ::=
+    Number |
+    Identifier
 ;

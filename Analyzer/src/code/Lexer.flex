@@ -65,6 +65,8 @@ space=[ ,\t,\r]+
 
 ( ":" ) {lexeme=yytext(); return Colon;}
 
+( "'" ) {lexeme=yytext(); return Literal;}
+
 ( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {lexeme=yytext(); return Identifier;}
 
 ("(-"{Digits}+")")|{Digits}+ {lexeme=yytext(); return Number;}

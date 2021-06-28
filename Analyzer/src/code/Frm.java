@@ -107,6 +107,9 @@ public class Frm extends javax.swing.JFrame {
                 case Semicolon:
                     result += "  <Ponto e vírgula>\t" + lexer.lexeme + "\n";
                     break;
+                case Literal:
+                    result += "  <Identificador Literal>\t" + lexer.lexeme + "\n";
+                    break;
                 case Colon:
                     result += "  <Dois Pontos>\t" + lexer.lexeme + "\n";
                     break;
