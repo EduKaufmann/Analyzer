@@ -20,7 +20,8 @@ terminal Line, Quotes, Int, Float, Char, If, Else,
     Op_increase, Op_boolean, Parenthesis_o, Parenthesis_c,
     Braces_o, Braces_c, Brackets_o, Brackets_c, Semicolon, Identifier,
     Number, ERROR;
-non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION;
+non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION, 
+    RECURSIVE_ARRAY_DECLARATION, ARRAY_DECLARATION;
 
 start with BEGIN;
 
@@ -30,9 +31,18 @@ BEGIN ::=
 DECLARATION ::= 
     Int Identifier RECURSIVE_DECLARATION | 
     Float Identifier RECURSIVE_DECLARATION |
-    Char Identifier RECURSIVE_DECLARATION  
+    Char Identifier ARRAY_DECLARATION RECURSIVE_ARRAY_DECLARATION|
+    Char Identifier RECURSIVE_ARRAY_DECLARATION
 ;
 RECURSIVE_DECLARATION ::=
     Identifier RECURSIVE_DECLARATION |
     Semicolon
+;
+ARRAY_DECLARATION ::=
+    Brackets_o Number Brackets_c
+;
+RECURSIVE_ARRAY_DECLARATION ::=
+    Identifier ARRAY_DECLARATION RECURSIVE_ARRAY_DECLARATION |
+    Identifier RECURSIVE_ARRAY_DECLARATION |
+    Semicolon	
 ;
