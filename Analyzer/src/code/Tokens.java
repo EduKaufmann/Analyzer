@@ -7,15 +7,36 @@ package code;
 
 /**
  *
- * @author edu_k
+ * @author Charly Ponce
  */
 public enum Tokens {
-    Reserved,
+    Line,
+    Quotes,
+    Type_data,
+    Array,
+    If,
+    Else,
+    Do,
+    While,
+    For,
     Equal,
     Sum,
     Subtraction,
     Multiplication,
     Division,
+    Op_logical,
+    Op_increase,
+    Op_relational,
+    Op_attribution,
+    Op_boolean,
+    Parenthesis_o,
+    Parenthesis_c,
+    Braces_o,
+    Braces_c,
+    Brackets_o,
+    Brackets_c,
+    Main,
+    Semicolon,
     Identifier,
     Number,
     ERROR
