@@ -19,9 +19,11 @@ space=[ ,\t,\r]+
 
 ( "\"" ) {lexeme=yytext(); return Quotes;}
 
-( byte | int | char | long | float | double ) {lexeme=yytext(); return Type_data;}
+( "int" ) {lexeme=yytext(); return Int;}
 
-( String ) {lexeme=yytext(); return Array;}
+( "char" ) {lexeme=yytext(); return Char;}
+
+( "float" ) {lexeme=yytext(); return Float;}
 
 ( if ) {lexeme=yytext(); return If;}
 
@@ -47,8 +49,6 @@ space=[ ,\t,\r]+
 
 ( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme = yytext(); return Op_relational;}
 
-( "+=" | "-="  | "*=" | "/=" | "%=" ) {lexeme = yytext(); return Op_attribution;}
-
 ( "++" | "--" ) {lexeme = yytext(); return Op_increase;}
 
 (true | false)      {lexeme = yytext(); return Op_boolean;}
@@ -65,11 +65,9 @@ space=[ ,\t,\r]+
 
 ( "]" ) {lexeme = yytext(); return Brackets_c;}
 
-( "main" ) {lexeme=yytext(); return Main;}
-
 ( ";" ) {lexeme=yytext(); return Semicolon;}
 
-{Letters}({Letters}|{Digits})* {lexeme=yytext(); return Identifier;}
+( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {lexeme=yytext(); return Identifier;}
 
 ("(-"{Digits}+")")|{Digits}+ {lexeme=yytext(); return Number;}
 

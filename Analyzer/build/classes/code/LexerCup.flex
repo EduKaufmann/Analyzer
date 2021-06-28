@@ -26,11 +26,11 @@ space=[ ,\t,\r,\n]+
 
 ( "\"" ) {return new Symbol(sym.Quotes, yychar, yyline, yytext());}
 
-( byte | char | long | float | double ) {return new Symbol(sym.Type_data, yychar, yyline, yytext());}
-
 ( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
 
-( String ) {return new Symbol(sym.Array, yychar, yyline, yytext());}
+( "float" ) {return new Symbol(sym.Float, yychar, yyline, yytext());}
+
+( "char" ) {return new Symbol(sym.Char, yychar, yyline, yytext());}
 
 ( if ) {return new Symbol(sym.If, yychar, yyline, yytext());}
 
@@ -56,8 +56,6 @@ space=[ ,\t,\r,\n]+
 
 ( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {return new Symbol(sym.Op_relational, yychar, yyline, yytext());}
 
-( "+=" | "-="  | "*=" | "/=" | "%=" | "=" ) {return new Symbol(sym.Op_attribution, yychar, yyline, yytext());}
-
 ( "++" | "--" ) {return new Symbol(sym.Op_increase, yychar, yyline, yytext());}
 
 ( true | false ) {return new Symbol(sym.Op_boolean, yychar, yyline, yytext());}
@@ -74,11 +72,9 @@ space=[ ,\t,\r,\n]+
 
 ( "]" ) {return new Symbol(sym.Brackets_c, yychar, yyline, yytext());}
 
-( "main" ) {return new Symbol(sym.Main, yychar, yyline, yytext());}
-
 ( ";" ) {return new Symbol(sym.Semicolon, yychar, yyline, yytext());}
 
-{Letters}({Letters}|{Digits})* {return new Symbol(sym.Identifier, yychar, yyline, yytext());}
+( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {return new Symbol(sym.Identifier, yychar, yyline, yytext());}
 
 ("(-"{Digits}+")")|{Digits}+ {return new Symbol(sym.Number, yychar, yyline, yytext());}
 

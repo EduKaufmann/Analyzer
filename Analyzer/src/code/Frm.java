@@ -50,12 +50,6 @@ public class Frm extends javax.swing.JFrame {
                 case Quotes:
                     result += "  <Aspas>\t\t" + lexer.lexeme + "\n";
                     break;
-                case Array:
-                    result += "  <Tipo de dado>\t" + lexer.lexeme + "\n";
-                    break;
-                case Type_data:
-                    result += "  <Tipo de dado>\t" + lexer.lexeme + "\n";
-                    break;
                 case If:
                     result += "  <Reservada if>\t" + lexer.lexeme + "\n";
                     break;
@@ -95,9 +89,6 @@ public class Frm extends javax.swing.JFrame {
                 case Op_relational:
                     result += "  <Operador relacional>\t" + lexer.lexeme + "\n";
                     break;
-                case Op_attribution:
-                    result += "  <Operador atribuição>\t" + lexer.lexeme + "\n";
-                    break;
                 case Op_boolean:
                     result += "  <Operador booleano>\t" + lexer.lexeme + "\n";
                     break;
@@ -118,9 +109,6 @@ public class Frm extends javax.swing.JFrame {
                     break;
                 case Brackets_c:
                     result += "  <Colchete de fechamento>\t" + lexer.lexeme + "\n";
-                    break;
-                case Main:
-                    result += "  <Reservada main>\t" + lexer.lexeme + "\n";
                     break;
                 case Semicolon:
                     result += "  <Ponto e vírgula>\t" + lexer.lexeme + "\n";

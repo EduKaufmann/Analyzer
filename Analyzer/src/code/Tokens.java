@@ -7,13 +7,14 @@ package code;
 
 /**
  *
- * @author Charly Ponce
+ * @author José Eduardo kaufmann e Leonardo Montiel
  */
 public enum Tokens {
     Line,
     Quotes,
-    Type_data,
-    Array,
+    Int,
+    Char,
+    Float,
     If,
     Else,
     Do,
@@ -27,7 +28,6 @@ public enum Tokens {
     Op_logical,
     Op_increase,
     Op_relational,
-    Op_attribution,
     Op_boolean,
     Parenthesis_o,
     Parenthesis_c,
@@ -35,7 +35,6 @@ public enum Tokens {
     Braces_c,
     Brackets_o,
     Brackets_c,
-    Main,
     Semicolon,
     Identifier,
     Number,

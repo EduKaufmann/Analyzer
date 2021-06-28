@@ -15,74 +15,24 @@ parser code
 }
 :};
 
-terminal Line, Quotes, Type_data, Int, Array, If, Else, Do, While, For,
+terminal Line, Quotes, Int, Float, Char, If, Else,
     Equal, Sum, Subtraction, Multiplication, Division, Op_logical, Op_relational,
-    Op_attribution, Op_increase, Op_boolean, Parenthesis_o, Parenthesis_c,
-    Braces_o, Braces_c, Brackets_o, Brackets_c, Main, Semicolon, Identifier,
+    Op_increase, Op_boolean, Parenthesis_o, Parenthesis_c,
+    Braces_o, Braces_c, Brackets_o, Brackets_c, Semicolon, Identifier,
     Number, ERROR;
-non terminal BEGIN, SENTENCE, DECLARATION, DECLARATION_FOR, IF, IF_ELSE,
-    WHILE, DO_WHILE, FOR, SENTENCE_BOOLEAN, SENTENCE_FOR;
+non terminal BEGIN, DECLARATION, RECURSIVE_DECLARATION;
 
 start with BEGIN;
 
 BEGIN ::= 
-    Int Main Parenthesis_o Parenthesis_c Braces_o SENTENCE Braces_c |
-    Main Parenthesis_o Parenthesis_c Braces_o SENTENCE Braces_c
-;
-SENTENCE ::= 
-    SENTENCE DECLARATION |
-    DECLARATION |
-    SENTENCE IF | 
-    IF |
-    SENTENCE IF_ELSE |
-    IF_ELSE |
-    SENTENCE WHILE |
-    WHILE |
-    SENTENCE DO_WHILE
-    DO_WHILE |
-    SENTENCE FOR |
-    FOR
+    DECLARATION
 ;
 DECLARATION ::= 
-    Int Identifier Semicolon | 
-    Int Identifier Op_attribution Number Semicolon |
-    Int Identifier Equal Number Semicolon |
-    Int Identifier Op_increase Semicolon | 
-    Int Op_increase Identifier Semicolon | 
-    Type_data Identifier Semicolon | 
-    Type_data Identifier Op_attribution Number Semicolon |
-    Type_data Identifier Equal Number Semicolon |
-    Type_data Identifier Op_increase Semicolon | 
-    Type_data Op_increase Identifier Semicolon | 
-    Array Identifier Op_attribution Quotes Quotes Semicolon |
-    Array Identifier Equal Quotes Quotes Semicolon |
-    Array Identifier Op_attribution Quotes Identifier Quotes Semicolon |
-    Array Identifier Equal Quotes Identifier Quotes Semicolon
+    Int Identifier RECURSIVE_DECLARATION | 
+    Float Identifier RECURSIVE_DECLARATION |
+    Char Identifier RECURSIVE_DECLARATION  
 ;
-IF ::= If Parenthesis_o SENTENCE_BOOLEAN Parenthesis_c Braces_o SENTENCE Braces_c
-;
-SENTENCE_BOOLEAN ::= 
-    Op_boolean | 
-    Identifier Op_relational Op_boolean |
-    Identifier Op_relational Number |
-    Identifier Op_relational Identifier |
-    Identifier Op_relational Quotes Quotes |
-    Identifier Op_relational Quotes Identifier Quotes
-;
-IF_ELSE ::= If Parenthesis_o SENTENCE_BOOLEAN Parenthesis_c Braces_o SENTENCE Braces_c Else Braces_o SENTENCE Braces_c
-;
-WHILE ::= While Parenthesis_o SENTENCE_BOOLEAN Parenthesis_c Braces_o SENTENCE Braces_c
-;
-DO_WHILE ::= Do Braces_o SENTENCE Braces_c While Parenthesis_o SENTENCE_BOOLEAN Parenthesis_c Semicolon
-;
-FOR ::= For Parenthesis_o SENTENCE_FOR Parenthesis_c Braces_o SENTENCE Braces_c
-;
-SENTENCE_FOR ::=
-    Type_data Identifier Equal Number Semicolon SENTENCE_BOOLEAN Semicolon DECLARATION_FOR |
-    Identifier Equal Number Semicolon SENTENCE_BOOLEAN Semicolon DECLARATION_FOR
-;
-DECLARATION_FOR ::= 
-    Identifier Op_attribution Number |
-    Identifier Op_increase | 
-    Op_increase Identifier
+RECURSIVE_DECLARATION ::=
+    Identifier RECURSIVE_DECLARATION |
+    Semicolon
 ;
