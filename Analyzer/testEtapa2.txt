@@ -1,8 +1,36 @@
 if (test<2){c=a+b;a=c+d;c++;}else {d=a/a;testando++;lol--;}
+if (_po) {
+grR0 = 8 + as;
+}
 if (8>_po) {
 grR0 = 8 + as;
+}
+if (_po < a) {
+grR0 = + as;
+}
+if (_po < a) {
+grR0 = 1+ as;
+}
+if (_po < a {
+grR0 = 1+ as;
+}
+if (_po < a ){;
+grR0 = 1+ as;
 }
 switch(ab){case 1:{teste=a+b;b++;break;}}
 switch(_teste123){case 'a':{teste=a+b;b++;break;}}
 switch(ab){case 1:{teste=a+b;b++;break;}case 2:case 33:{a++;break;}default:{c++;}}
+switch(b){
+case 1:{
+teste=a+b;
+b++;
+break;
+}
+case 2:case 3:{
+a++;
+break;}
+default:{
+c++;
+}
+}
 teste

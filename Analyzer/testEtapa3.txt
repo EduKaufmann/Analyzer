@@ -1,0 +1,32 @@
+while(a>2){
+a++;
+}
+while(a>2){
+a++;
+e = e * e;
+_0 = 7 / _io;
+}
+while(a){
+a--;
+}
+for(float c = 2; c <= 4; d--){
+_sd++;
+}
+for(c = 2; c <= 4; d--){
+_sd++;
+}
+for(int c = 2; c == 4; d--){
+_sd++
+}
+for(int c = 2; c == 4; d--){
+_sd++;
+oi9 = ii++;
+}
+for(int c = 2; c == 4; d--){
+_sd++;
+oi9 = ii+8;
+c=float++;
+}
+for(int c = 2; c == 4; d--){
+float++;
+}

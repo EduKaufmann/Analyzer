@@ -24,7 +24,6 @@ public enum Tokens {
     Break,
     Equal,
     Op_mathematic,
-    Op_logical,
     Op_increase,
     Op_relational,
     Parentheses_o,

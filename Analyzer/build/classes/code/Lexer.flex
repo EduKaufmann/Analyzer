@@ -43,9 +43,7 @@ space=[ ,\t,\r]+
 
 ( "+" | "-" | "*" | "/" ) {lexeme = yytext(); return Op_mathematic;}
 
-( "&&" | "||" | "!" | "&" | "|" ) {lexeme=yytext(); return Op_logical;}
-
-( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme = yytext(); return Op_relational;}
+( ">" | "<" | "==" | "!=" | ">=" | "<=" ) {lexeme = yytext(); return Op_relational;}
 
 ( "++" | "--" ) {lexeme = yytext(); return Op_increase;}
 
@@ -67,7 +65,7 @@ space=[ ,\t,\r]+
 
 ( "'" ) {lexeme=yytext(); return Literal;}
 
-( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {lexeme=yytext(); return Identifier;}
+( _({Letters}|{Digits})+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {lexeme=yytext(); return Identifier;}
 
 ("(-"{Digits}+")")|{Digits}+ {lexeme=yytext(); return Number;}
 

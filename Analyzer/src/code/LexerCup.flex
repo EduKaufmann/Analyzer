@@ -50,9 +50,7 @@ space=[ ,\t,\r,\n]+
 
 ( "+" | "-" | "*" | "/" ) {return new Symbol(sym.Op_mathematic, yychar, yyline, yytext());}
 
-( "&&" | "||" | "!" | "&" | "|" ) {return new Symbol(sym.Op_logical, yychar, yyline, yytext());}
-
-( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {return new Symbol(sym.Op_relational, yychar, yyline, yytext());}
+( ">" | "<" | "==" | "!=" | ">=" | "<=" ) {return new Symbol(sym.Op_relational, yychar, yyline, yytext());}
 
 ( "++" | "--" ) {return new Symbol(sym.Op_increase, yychar, yyline, yytext());}
 
@@ -72,10 +70,8 @@ space=[ ,\t,\r,\n]+
 
 ( ":" ) {return new Symbol(sym.Colon, yychar, yyline, yytext());}
 
-( _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {return new Symbol(sym.Identifier, yychar, yyline, yytext());}
+( _({Letters}|{Digits})+ | {Letters}+{Digits}*((,) _({Letters}|{Digits}|_)+ | {Letters}+{Digits}*)* ) {return new Symbol(sym.Identifier, yychar, yyline, yytext());}
 
 ("(-"{Digits}+")")|{Digits}+ {return new Symbol(sym.Number, yychar, yyline, yytext());}
 
 ( "'"[a-zA-Z_]"'" ) {return new Symbol(sym.CharName, yychar, yyline, yytext());}
-
- . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
