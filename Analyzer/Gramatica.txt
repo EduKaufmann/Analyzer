@@ -1,0 +1,37 @@
+ETAPA 1
+
+<var> ::= char <char>;|int <int>;|float <float>;
+<char> ::= <nomeVar>([<numeros>*])?
+<int> ::= <nomeVar>
+<float> ::= <nomeVar>
+<letras> ::= a...z | A...Z
+<numeros> ::= 0...9
+<nomeVar> ::= _(<letras><numeros>)+ | (<letras>)+(<numeros>)*((,|, ) _(<letras><numeros>)+ | (<letras>)+<numeros>*)*
+
+ETAPA 2
+
+<inicio> ::= <if> | <switch>
+<letras> ::= a...z | A...Z
+<numeros> ::= 0...9
+<nomeVar> ::= _(<letras><numeros>)+ | (<letras>)+(<numeros>)*((,|, ) _(<letras><numeros>)+ | (<letras>)+<numeros>*)*
+<if> ::= if <condic> { (<comand>;)+ } (else { (<comand>;)+})? 
+<condic> ::= ((<nomeVar> | (<numeros>)+) <rel> (<nomeVar> | (<numeros>)+))
+<rel> ::= (<|>|==|<=|>=|!=)
+<comand> ::= <nomeVar> = ((<numeros>)+|<nomeVar>) <arit> ((<numeros>)+|<nomeVar>) | <nomeVar>(++|--)
+<arit> ::= (+|-|*|/)
+<switch> ::= switch (<nomeVar>) { <case> (default: <default>)?}
+<case> ::= (case ((<numeros>)+|'<letras>'):)+ {(<comand>;)+ break;}
+<default> ::= {(<comand>;)+}
+
+ETAPA 3
+
+<inicio> ::= <while> | <for>
+<letras> ::= a...z | A...Z
+<numeros> ::= 0...9
+<rel> ::= (<|>|==|<=|>=|!=)
+<arit> ::= (+|-|*|/)
+<nomeVar> ::= _(<letras><numeros>)+ | (<letras>)+(<numeros>)*((,|, ) _(<letras><numeros>)+ | (<letras>)+<numeros>*)*
+<comand> ::= <nomeVar> = ((<numeros>)+|<nomeVar>) <arit> ((<numeros>)+|<nomeVar>) | <nomeVar>(++|--)
+<condic> ::= ((<nomeVar> | (<numeros>)+) <rel> (<nomeVar> | (<numeros>)+))
+<while> ::= while (<condic>) {(<comand>)+}
+<for> ::= for ((int |float )<nomeVar> = (<numeros>|<nomevar>); <condic>; (<nomeVar>(++|--))){(<comand>;)+}
