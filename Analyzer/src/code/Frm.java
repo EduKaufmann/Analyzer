@@ -35,7 +35,7 @@ public class Frm extends javax.swing.JFrame {
         
         String expr = (String) txtResult.getText();
         Lexer lexer = new Lexer(new StringReader(expr));
-        String result = "LINHA " + cont + "\t\tSIMBOLO\n";
+        String result = "LINHA " + cont + "\t\t\t\tSIMBOLO\n";
         while (true) {
             Tokens token = lexer.yylex();
             if (token == null) {
@@ -46,6 +46,15 @@ public class Frm extends javax.swing.JFrame {
                 case Line:
                     cont++;
                     result += "LINHA " + cont + "\n";
+                    break;
+                case Int:
+                    result += "  <Reservada int>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case Float:
+                    result += "  <Reservada float>\t\t" + lexer.lexeme + "\n";
+                    break;
+                case Char:
+                    result += "  <Reservada char>\t\t" + lexer.lexeme + "\n";
                     break;
                 case If:
                     result += "  <Reservada if>\t\t" + lexer.lexeme + "\n";
@@ -136,7 +145,6 @@ public class Frm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnFile = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResult = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -152,14 +160,6 @@ public class Frm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Analisador Léxico", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 36))); // NOI18N
-
-        btnFile.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        btnFile.setText("Abrir arquivo");
-        btnFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFileActionPerformed(evt);
-            }
-        });
 
         txtResult.setColumns(20);
         txtResult.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -193,14 +193,9 @@ public class Frm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btnFile))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAnalyzerLex)
@@ -214,16 +209,15 @@ public class Frm extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalyzerLex)
-                    .addComponent(btnClearLex)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAnalyzerLex)
+                            .addComponent(btnClearLex)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Analisador Sintático", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 36))); // NOI18N
@@ -293,22 +287,6 @@ public class Frm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFileActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File file = new File(chooser.getSelectedFile().getAbsolutePath());
-        
-        try {
-            String ST = new String(Files.readAllBytes(file.toPath()));
-            txtResult.setText(ST);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Frm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Frm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnFileActionPerformed
 
     private void btnClearLexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearLexActionPerformed
         // TODO add your handling code here:
@@ -387,7 +365,6 @@ public class Frm extends javax.swing.JFrame {
     private javax.swing.JButton btnAnalyzerSin;
     private javax.swing.JButton btnClearLex;
     private javax.swing.JButton btnClearSin;
-    private javax.swing.JButton btnFile;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
